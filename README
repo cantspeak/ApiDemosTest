@@ -1,1 +1,6 @@
-This file was created by Android Studio (I/O Preview) AI-130.677228 for binding GitHub repository
+<环境>
+    sdk-17
+    Android Studio
+    jdk 1.6
+<目标>
+    这个是用来抄SDK-17上面的ApiDemo的,并添加注释.
