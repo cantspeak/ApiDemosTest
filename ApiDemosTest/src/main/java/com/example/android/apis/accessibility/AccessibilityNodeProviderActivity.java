@@ -58,15 +58,18 @@ public class AccessibilityNodeProviderActivity extends Activity {
             createVirtualChildren();
         }
 
+        /**Creates the virtual children of this View.创建这个view的虚拟子view*/
         private void createVirtualChildren() {
 
             VirtualView firstChild = new VirtualView(0, new Rect(0,0,150,150) , Color.RED,
                     "Virtual view 1");
+            mChildren.add(firstChild);
             VirtualView secondChild = new VirtualView(0, new Rect(0,0,150,150) , Color.RED,
                     "Virtual view 2");
+            mChildren.add(secondChild);
             VirtualView thirdChild = new VirtualView(0, new Rect(0,0,150,150) , Color.RED,
                     "Virtual view 3");
-
+            mChildren.add(thirdChild);
         }
 
         private boolean onHoverVirtualView(VirtualView virtualView,MotionEvent event) {
