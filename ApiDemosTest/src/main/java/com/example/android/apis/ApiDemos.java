@@ -35,7 +35,7 @@ public class ApiDemos extends ListActivity {
         setListAdapter(new SimpleAdapter(this, getData(path),
                 android.R.layout.simple_list_item_1, new String[]{"title"},
                 new int[]{android.R.id.text1}));
-        getListView().setTextFilterEnabled(true);//取得
+        getListView().setTextFilterEnabled(true);//这个功能需要外置的键盘,可以通过直接输入字母来过滤item(只会显示符合的item)
     }
 
     /**
