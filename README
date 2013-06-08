@@ -6,3 +6,5 @@
     这个是用来抄SDK-17上面的ApiDemo的,并添加注释.
 <注意>
     有些功能需要4.1或更高的版本才有效,比如Accessibility我在一个4.0的机器上没测出来,但我用Nexus 4就可以有效果,所以最好能有17版本的机器.
+    1.Res下面的多个匹配目录,如:values\values-v11\values-v14 并不是可有可无的,如果一个acitivity用到了指定版本以后的特性,在低版本中可
+    以不启用.设置android:enabled属性,并把值根据环境设置不同的值.比如<bool name="atLeasthoneycomb">true</bool>属性

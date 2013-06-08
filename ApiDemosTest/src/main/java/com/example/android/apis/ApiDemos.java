@@ -5,10 +5,17 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ListView;
 import android.widget.SimpleAdapter;
 
 import java.text.Collator;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Created by root on 6/4/13.
@@ -18,9 +25,9 @@ public class ApiDemos extends ListActivity {
     public void onCreate(Bundle saveInstanceState) {
         super.onCreate(saveInstanceState);//父类的方法
 
-        Intent intetn = getIntent();
-        String path = getIntent().getStringExtra("com.example.android.apis.Path");
-
+        Intent intent = getIntent();
+        String path = intent.getStringExtra("com.example.android.apis.Path");
+        System.out.println("Path = " + path);
         if (path == null) {//如果没有传递的参数,那么path路径为空字符串
             path = "";
         }
@@ -126,8 +133,16 @@ public class ApiDemos extends ListActivity {
 
     protected Intent activityIntent(String pkg, String componentName) {
         Intent result = new Intent();
+        result.setClassName(pkg,componentName);
         return result;
     }
 
+    @Override
+    protected void onListItemClick(ListView l,View v,int position, long id){
+        Map<String,Object> map = (Map<String,Object>)l.getItemAtPosition(position);
+
+        Intent intent = (Intent)map.get("intent");
+        startActivity(intent);
+    }
 
 }

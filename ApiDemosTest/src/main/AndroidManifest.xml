@@ -32,7 +32,15 @@
         <!-- ****************************************** -->
 
         <!--Activity Samples -->
-
+        <activity android:name=".animation.AnimationCloning"
+                  android:label="Animation/Cloning"
+                  android:hardwareAccelerated="false"
+                  android:enabled="@bool/alLeastHoneycomb">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.SAMPLE_CODE"/>
+            </intent-filter>
+        </activity>
 
     </application>
 
