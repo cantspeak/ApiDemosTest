@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
@@ -27,7 +28,6 @@ public class ApiDemos extends ListActivity {
 
         Intent intent = getIntent();
         String path = intent.getStringExtra("com.example.android.apis.Path");
-        System.out.println("Path = " + path);
         if (path == null) {//如果没有传递的参数,那么path路径为空字符串
             path = "";
         }
@@ -55,8 +55,8 @@ public class ApiDemos extends ListActivity {
         if (null == list)
             return myData;
 
-        String[] prefixPath;
-        String prefixWithSlash = prefix;
+        String[] prefixPath;//前缀路经
+        String prefixWithSlash = prefix;//前缀和斜线
 
         if (prefix.equals("")) {
             prefixPath = null;
@@ -72,15 +72,17 @@ public class ApiDemos extends ListActivity {
         /*通过取得我们定义的指定的格式查找出所有对应的Activity*/
         for (int i = 0; i < len; i++) {
             ResolveInfo info = list.get(i);//取得一个ResolveInfo
-            CharSequence labelSeq = info.loadLabel(pm);//保存当前ResolveInfo对应的label
-            String label = labelSeq != null
+            CharSequence labelSeq = info.loadLabel(pm);//取得android:name对应的名称,去掉package标签部分
+            String label = labelSeq != null//    {a/b ,a/c}   { b/a ,b/c}
                     ? labelSeq.toString()
-                    : info.activityInfo.name;//如果label为空,则取得activity名称
+                    : info.activityInfo.name;//如果label为空,则取得完整的activity名称
 
-            //传入字符串的长度为0或者label包含以prefixWithSlash变量中字符串开头
+            //经过测试上面两句可以变成这样:
+            //String label = info.ladLabel(pm).toString();因为info.ladbel(pm)默认就是如果为null,就返回当前所在activity的名字.
+            //如果是第一次进,或者label是以Prefix+"/"开始
             if (prefixWithSlash.length() == 0 || label.startsWith(prefixWithSlash)) {
                 String[] labelPath = label.split("/");
-
+                //如果不是第一层,那就是label分割后第一层,如果
                 String nextLabel = prefixPath == null ? labelPath[0] : labelPath[prefixPath.length];
 
                 if ((prefixPath != null ? prefixPath.length : 0) == labelPath.length - 1) {
@@ -90,8 +92,9 @@ public class ApiDemos extends ListActivity {
                             info.activityInfo.name
                     ));
                 } else {
-                    if (entries.get(nextLabel) == null) {
-                        addItem(myData, nextLabel, browseIntent(prefix.equals("") ? nextLabel : prefix + "/" + nextLabel));
+                    if (entries.get(nextLabel) == null) {//这是map是用来保证唯一,当label的某一字段相同时
+                        addItem(myData, nextLabel,
+                                browseIntent(prefix.equals("") ? nextLabel : prefix + "/" + nextLabel));
                         entries.put(nextLabel, true);
                     }
                 }

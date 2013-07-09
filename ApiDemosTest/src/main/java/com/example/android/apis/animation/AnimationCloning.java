@@ -71,7 +71,7 @@ public class AnimationCloning extends Activity{
             ShapeHolder ball0 = addBall(50f,25f);
             ShapeHolder ball1 = addBall(150f,25f);
             ShapeHolder ball2 = addBall(250f,25f);
-            ShapeHolder ball3 = addBall(250f,25f);
+            ShapeHolder ball3 = addBall(350f,25f);
 
         }
 
@@ -139,7 +139,7 @@ public class AnimationCloning extends Activity{
             int red = (int)(100 + Math.random() * 155);
             int green = (int)(100 + Math.random() * 155);
             int blue = (int)(100 + Math.random() * 155);
-            int color = 0xff000000 | red << 16 | green << 8 | blue;
+            int color = 0xff000000 | red << 16 | green << 8 | blue;//着色是按 十六进制两位表示一个值,透明\红\绿\蓝
             Paint paint = drawable.getPaint();
             int darkColor = 0xff000000 | red/4 << 16 | green/4 << 8 | blue/4;
             RadialGradient gradient = new RadialGradient(37.5f,12.5f,50f,color,darkColor, Shader.TileMode.CLAMP);
