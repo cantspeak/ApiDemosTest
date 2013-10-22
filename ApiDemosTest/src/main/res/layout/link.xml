@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+    <LinearLayout android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:showDividers="middle"
+            android:divider="?android:attr/listDivider">
+        <!-- Four TextView widgets. -->
+        <!-- Text1 -->
+        <TextView android:id="@+id/text1"
+                  android:layout_height="wrap_content"
+                  android:layout_width="match_parent"
+                  android:paddingTop="8dp"
+                  android:autoLink="all"
+                  android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/link_text_auto"/>
+        <!-- Text2 -->
+        <TextView android:id="@+id/text2"
+                  android:layout_height="wrap_content"
+                  android:layout_width="match_parent"
+                  android:paddingTop="8dp"
+                  android:textAppearance="?android:attr/textAppearanceMedium"
+                  android:text="@string/link_text_manual"
+                  />
+
+        <!-- Text3 -->
+        <TextView android:id="@+id/text3"
+                  android:layout_height="match_parent"
+                  android:layout_width="match_parent"
+                  android:paddingTop="8dp"
+                  android:paddingBottom="8dp"
+                  android:textAppearance="?android:attr/textAppearanceMedium"
+                  />
+        <!-- Text4 -->
+        <TextView android:id="@+id/text4"
+                  android:layout_height="match_parent"
+                  android:layout_width="match_parent"
+                  android:paddingTop="8dp"
+                  android:textAppearance="?android:attr/textAppearanceMedium"
+                />
+    </LinearLayout>
+
+</ScrollView>

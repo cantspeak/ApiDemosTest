@@ -13,6 +13,7 @@ import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.OvalShape;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.AccelerateInterpolator;
 import android.view.animation.AnimationSet;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.Button;
@@ -25,7 +26,7 @@ import java.util.ArrayList;
  * 创建四个球,并模拟下落动画
  */
 public class AnimationCloning extends Activity{
-
+    public static float k = 0f;
 
     /**
      * 覆盖父类的onCreate方法,并初始化一些参数
@@ -42,6 +43,7 @@ public class AnimationCloning extends Activity{
         starter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                k = 0;
                 animView.startAnimation();
             }
         });
@@ -76,8 +78,8 @@ public class AnimationCloning extends Activity{
         }
 
         /**************************************************************/
-        /******************   重点在这里,创建动画    ********************/
-        /**************************************************************/
+        /******************   重点在这里,创建动画   *********************/
+        /*************************************************************/
         private void createAnimation() {
             //如果动画还没有定义
             if( animation == null) {
@@ -92,8 +94,11 @@ public class AnimationCloning extends Activity{
                 /*第二个动画*/
                 ObjectAnimator anim2 = anim1.clone();//anim2是克隆的一个anim1的副本
                 anim2.setTarget(balls.get(1));
+                anim1.setInterpolator(new DecelerateInterpolator());
+                anim1.setRepeatCount(2);
+                anim2.setInterpolator(new AccelerateInterpolator());
 
-                anim1.addUpdateListener(this);
+                //anim1.addUpdateListener(this);
                 /*第三个动画的资源*/
                 ShapeHolder ball2 = balls.get(2);
                 ObjectAnimator animDown = ObjectAnimator.ofFloat(
@@ -108,7 +113,9 @@ public class AnimationCloning extends Activity{
                         getHeight()- ball2.getHeight(),
                         0f
                 ).setDuration(500);
-                animDown.setInterpolator(new DecelerateInterpolator());
+
+                animDown.setInterpolator(new AccelerateInterpolator());
+                animUp.setInterpolator(new DecelerateInterpolator());
 
                 AnimatorSet s1 = new AnimatorSet();
                 s1.playSequentially(animDown,animUp);//前一个动画结束就放后一个动画
@@ -124,7 +131,7 @@ public class AnimationCloning extends Activity{
         }
 
         /**
-         * 这个是创建形状的
+         * 这个是创建形状的,并存储到ArrayList中.
          * @param x
          * @param y
          * @return
@@ -142,13 +149,14 @@ public class AnimationCloning extends Activity{
             int color = 0xff000000 | red << 16 | green << 8 | blue;//着色是按 十六进制两位表示一个值,透明\红\绿\蓝
             Paint paint = drawable.getPaint();
             int darkColor = 0xff000000 | red/4 << 16 | green/4 << 8 | blue/4;
-            RadialGradient gradient = new RadialGradient(37.5f,12.5f,50f,color,darkColor, Shader.TileMode.CLAMP);
-            paint.setShader(gradient);
+            //RadialGradient gradient = new RadialGradient(37.5f,12.5f,50f,color,darkColor, Shader.TileMode.CLAMP);
+            //paint.setShader(gradient);
             shapeHolder.setPaint(paint);
             balls.add(shapeHolder);
             return shapeHolder;
         }
 
+        /*依次画四个小球*/
         @Override
         protected void onDraw(Canvas canvas){
             for (int i = 0;i< balls.size();i++) {
@@ -165,8 +173,10 @@ public class AnimationCloning extends Activity{
             animation.start();
         }
 
+
         @Override
         public void onAnimationUpdate(ValueAnimator animation) {
+            System.out.println(""+(k++));
             invalidate();
         }
     }

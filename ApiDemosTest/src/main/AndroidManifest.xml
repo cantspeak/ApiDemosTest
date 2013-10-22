@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- 查找Acitivity是用cation 和 category,显示时取得label的名字-->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.android.apis"
     android:versionCode="1"
     android:versionName="1.0" >
 
     <uses-sdk
-        android:minSdkVersion="17"
+        android:minSdkVersion="14"
         android:targetSdkVersion="17" />
     <application
             android:allowBackup="true"
@@ -18,8 +19,7 @@
         <uses-library android:name="com.example.will.never.exist" android:required="false"/>
 
         <activity
-                android:name="com.example.android.apis.ApiDemos"
-                android:label="@string/app_name" >
+                android:name="com.example.android.apis.ApiDemos">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.DEFAULT"/>
@@ -41,7 +41,48 @@
                 <category android:name="android.intent.category.SAMPLE_CODE"/>
             </intent-filter>
         </activity>
+        <activity android:name=".animation.AnimationSeeking"
+                  android:label="Animation/Seeking"
+                  android:hardwareAccelerated="false"
+                  android:enabled="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.SAMPLE_CODE"/>
+            </intent-filter>
+        </activity>
 
+        <activity android:name=".animation.AnimatorEvents"
+                  android:label="Animation/Events"
+                  android:hardwareAccelerated="false"
+                  android:enabled="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.SAMPLE_CODE"/>
+            </intent-filter>
+        </activity>
+
+        <!--Texts Samples -->
+        <activity android:name=".text.Link"
+                  android:label="Text/link">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.SAMPLE_CODE"/>
+            </intent-filter>
+        </activity>
+        <activity android:name=".text.LogTextBox1"
+                  android:label="Text/LogTextBox1">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.SAMPLE_CODE"/>
+            </intent-filter>
+        </activity>
+        <activity android:name=".text.Marquee"
+                android:label="Text/Marquee">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.SAMPLE_CODE"/>
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

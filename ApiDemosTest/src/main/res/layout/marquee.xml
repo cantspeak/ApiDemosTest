@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <Button
+            android:layout_width="150dip"
+            android:layout_height="wrap_content"
+            android:text="@string/marquee_default"
+            android:ellipsize="marquee"
+            android:singleLine="true"
+            android:id="@+id/button" />
+    <TextView
+            android:layout_width="150dip"
+            android:layout_height="wrap_content"
+            android:text="@string/marquee_once"
+            android:singleLine="true"
+            android:ellipsize="marquee"
+            android:marqueeRepeatLimit="3"
+            android:id="@+id/button2" />
+    <TextView
+            android:layout_width="150dip"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:text="@string/marquee_forever"
+            android:ellipsize="marquee"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:focusableInTouchMode="true"
+            android:focusable="true"
+            android:id="@+id/button3"/>
+</LinearLayout>
